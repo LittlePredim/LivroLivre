@@ -54,6 +54,6 @@ npx expo start
 
 ## Autor
 
-Pedro
+Pedro Augusto da Silveira.
 
 Projeto desenvolvido para a disciplina de Programação para Dispositivos Móveis Android.
