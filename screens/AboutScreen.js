@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 
 export default function AboutScreen() {
+  // criar a tela sobre o projeto
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>📚 Sobre o LivroLivre</Text>
@@ -24,6 +25,7 @@ export default function AboutScreen() {
 }
 
 const styles = StyleSheet.create({
+  // styles
   container: {
     flex: 1,
     padding: 20,

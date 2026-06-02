@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-} from "react-native";
+} from "react-native"; // imports normais
 
 export default function EditBookScreen({ route, navigation }) {
+  //envia as informacoes entre telas
   const { livro } = route.params;
 
   const [titulo, setTitulo] = useState(livro.titulo);
@@ -18,6 +19,7 @@ export default function EditBookScreen({ route, navigation }) {
   const [descricao, setDescricao] = useState(livro.descricao || "");
 
   function salvarEdicao() {
+    // funcao principal ele vai atualizar o banco, exibir a mensagem e voltar para o home
     atualizarLivro(livro.id, titulo, autor, curso, descricao);
 
     Alert.alert("Sucesso", "Livro atualizado!");
@@ -49,6 +51,7 @@ export default function EditBookScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  // styles
   container: {
     flex: 1,
     padding: 20,

@@ -11,12 +11,14 @@ import {
 
 import { useFocusEffect } from "@react-navigation/native";
 import { listarLivros, excluirLivro } from "../database/database";
+// todos os imports padrao...
 
 export default function HomeScreen({ navigation }) {
-  const [livros, setLivros] = useState([]);
-  const [busca, setBusca] = useState("");
+  const [livros, setLivros] = useState([]); //cria uma variavel pra guardar os livros
+  const [busca, setBusca] = useState(""); // aqui armazena o texto digitado na pesquisa
 
   useFocusEffect(
+    //isso aqui e bacana, sempre que voce clicar me voltar e a tela ficar invisivel por alguns sec ela atualiza sozinho
     useCallback(() => {
       carregarLivros();
     }, []),
@@ -26,8 +28,10 @@ export default function HomeScreen({ navigation }) {
     const dados = listarLivros();
     setLivros(dados);
   }
-  const livrosFiltrados = livros.filter((livro) =>
-    livro.titulo.toLowerCase().includes(busca.toLowerCase()),
+  const livrosFiltrados = livros.filter(
+    (
+      livro, //percorre os livros, verifica se o titulo bate com o texto pesquisado
+    ) => livro.titulo.toLowerCase().includes(busca.toLowerCase()),
   );
   return (
     <View style={styles.container}>
@@ -35,7 +39,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.titulo}>📚 LivroLivre</Text>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("Sobre o Projeto")}
+          onPress={() => navigation.navigate("Sobre o Projeto")} //iconezinho
         >
           <Text style={styles.iconeInfo}>ℹ️</Text>
         </TouchableOpacity>
@@ -48,7 +52,7 @@ export default function HomeScreen({ navigation }) {
       </Text>
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => navigation.navigate("Adicionar Livro")}
+        onPress={() => navigation.navigate("Adicionar Livro")} //botao pra adicionar
       >
         <Text style={styles.textoBotao}>Adicionar Livro</Text>
       </TouchableOpacity>
@@ -57,11 +61,11 @@ export default function HomeScreen({ navigation }) {
         style={styles.inputBusca}
         placeholder="🔍 Pesquisar livro..."
         value={busca}
-        onChangeText={setBusca}
+        onChangeText={setBusca} // buscar livros
       />
       <FlatList
         data={livrosFiltrados}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()} //FlatList é otimizada para listas grandes e renderiza apenas os elementos necessários, melhorando o desempenho | fonte google. peguei essa ideia vendo na net msm
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.nomeLivro}>{item.titulo}</Text>
@@ -71,7 +75,7 @@ export default function HomeScreen({ navigation }) {
             <Text>Descrição: {item.descricao}</Text>
 
             <TouchableOpacity
-              style={styles.botaoDetalhes}
+              style={styles.botaoDetalhes} //botaozinho de detalhe no livro
               onPress={() =>
                 navigation.navigate("Detalhes do Livro", {
                   livro: item,
@@ -82,7 +86,7 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.botaoEditar}
+              style={styles.botaoEditar} //botao editar o livro
               onPress={() =>
                 navigation.navigate("Editar Livro", {
                   livro: item,
@@ -93,7 +97,7 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.botaoExcluir}
+              style={styles.botaoExcluir} //botao excluir o livro
               onPress={() => {
                 Alert.alert("Excluir", "Deseja realmente excluir este livro?", [
                   {

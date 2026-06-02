@@ -1,4 +1,4 @@
-import { inserirLivro } from "../database/database";
+import { inserirLivro } from "../database/database"; // salva o livro
 import React, { useState } from "react";
 import {
   View,
@@ -10,18 +10,19 @@ import {
 } from "react-native";
 
 export default function AddBookScreen() {
-  const [titulo, setTitulo] = useState("");
+  const [titulo, setTitulo] = useState(""); // cada campo aqui organiza as variaveis, bem simples
   const [autor, setAutor] = useState("");
   const [curso, setCurso] = useState("");
   const [descricao, setDescricao] = useState("");
 
   function salvarLivro() {
+    // funcao aqui salva o livro desde que tenha titulo e autor fora isso da erro
     if (!titulo || !autor) {
       Alert.alert("Erro", "Preencha título e autor.");
       return;
     }
 
-    inserirLivro(titulo, autor, curso, descricao);
+    inserirLivro(titulo, autor, curso, descricao); // envia os dados
 
     Alert.alert("Sucesso", "Livro cadastrado com sucesso!");
 
@@ -32,6 +33,7 @@ export default function AddBookScreen() {
   }
 
   return (
+    // aqui tem os campos, recebe o nome respectivamente, titulo, autor, e etc
     <View style={styles.container}>
       <Text style={styles.titulo}>Cadastrar Livro</Text>
 
@@ -66,11 +68,12 @@ export default function AddBookScreen() {
       <TouchableOpacity style={styles.botao} onPress={salvarLivro}>
         <Text style={styles.textoBotao}>Salvar Livro</Text>
       </TouchableOpacity>
-    </View>
+    </View> // aqui em cima um botao de salvar livro
   );
 }
 
 const styles = StyleSheet.create({
+  //aqui em baixo os styles
   container: {
     flex: 1,
     padding: 20,

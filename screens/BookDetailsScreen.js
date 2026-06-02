@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native"; //
 
 export default function BookDetailsScreen({ route }) {
-  const { livro } = route.params;
+  // recebe info da home
+  const { livro } = route.params; // pega o livro selecionado
 
   return (
+    // vai mostrar as info
     <View style={styles.container}>
       <Text style={styles.titulo}>📚 {livro.titulo}</Text>
 
@@ -15,10 +17,11 @@ export default function BookDetailsScreen({ route }) {
 
       <Text style={styles.descricao}>{livro.descricao || "Sem descrição"}</Text>
     </View>
-  );
+  ); // esse operador || evita vazios na interface
 }
 
 const styles = StyleSheet.create({
+  // aqui os styles
   container: {
     flex: 1,
     padding: 20,
